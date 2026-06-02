@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProSport — Loja de Artigos Esportivos</title>
+  <meta name="description" content="ProSport: tênis, roupas e acessórios esportivos das melhores marcas. Frete rápido e parcelamento." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Faixa superior -->
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <span>🚚 Frete grátis acima de R$ 299</span>
+      <span>💳 Até 10x sem juros</span>
+      <span class="topbar__hide-mobile">📦 Troca fácil em 30 dias</span>
+    </div>
+  </div>
+
+  <!-- Cabeçalho -->
+  <header class="header">
+    <div class="container header__inner">
+      <a href="#" class="logo" aria-label="ProSport - página inicial">
+        <span class="logo__mark">▲</span>
+        <span class="logo__text">PRO<strong>SPORT</strong></span>
+      </a>
+
+      <div class="search">
+        <input type="text" id="search-input" class="search__input" placeholder="O que você procura?" aria-label="Buscar produtos" />
+        <button class="search__btn" id="search-btn" aria-label="Buscar">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+      </div>
+
+      <div class="header__actions">
+        <button class="icon-btn" aria-label="Favoritos">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+        <button class="icon-btn cart-btn" id="cart-btn" aria-label="Abrir carrinho">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span class="cart-count" id="cart-count">0</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Menu de categorias -->
+    <nav class="nav">
+      <div class="container nav__inner">
+        <button class="nav__link nav__link--highlight" data-filter="all">Todos</button>
+        <button class="nav__link" data-filter="Calçados">Calçados</button>
+        <button class="nav__link" data-filter="Roupas">Roupas</button>
+        <button class="nav__link" data-filter="Futebol">Futebol</button>
+        <button class="nav__link" data-filter="Basquete">Basquete</button>
+        <button class="nav__link" data-filter="Corrida">Corrida</button>
+        <button class="nav__link" data-filter="Acessórios">Acessórios</button>
+        <button class="nav__link nav__link--outlet" data-filter="Outlet">Outlet</button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Banner / Hero -->
+  <section class="hero">
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <p class="hero__tag">Nova Coleção 2026</p>
+        <h1 class="hero__title">PERFORMANCE<br>SEM LIMITES</h1>
+        <p class="hero__sub">Tênis, roupas e equipamentos das maiores marcas do esporte.</p>
+        <a href="#produtos" class="btn btn--primary">Ver ofertas</a>
+      </div>
+      <div class="hero__art" aria-hidden="true">
+        <div class="hero__circle"></div>
+        <div class="hero__emoji">👟</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categorias em círculos -->
+  <section class="cats container">
+    <button class="cat" data-filter="Futebol"><span class="cat__icon">⚽</span><span>Futebol</span></button>
+    <button class="cat" data-filter="Basquete"><span class="cat__icon">🏀</span><span>Basquete</span></button>
+    <button class="cat" data-filter="Corrida"><span class="cat__icon">🏃</span><span>Corrida</span></button>
+    <button class="cat" data-filter="Calçados"><span class="cat__icon">👟</span><span>Calçados</span></button>
+    <button class="cat" data-filter="Roupas"><span class="cat__icon">👕</span><span>Roupas</span></button>
+    <button class="cat" data-filter="Acessórios"><span class="cat__icon">🎒</span><span>Acessórios</span></button>
+  </section>
+
+  <!-- Produtos -->
+  <main class="container" id="produtos">
+    <div class="section-head">
+      <h2 class="section-title" id="grid-title">Destaques</h2>
+      <select id="sort-select" class="sort" aria-label="Ordenar produtos">
+        <option value="relevance">Mais relevantes</option>
+        <option value="price-asc">Menor preço</option>
+        <option value="price-desc">Maior preço</option>
+        <option value="name">Nome (A-Z)</option>
+      </select>
+    </div>
+
+    <div class="grid" id="product-grid"><!-- produtos injetados via JS --></div>
+    <p class="empty" id="empty-msg" hidden>Nenhum produto encontrado. Tente outra busca. 🔍</p>
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div>
+        <span class="logo logo--footer"><span class="logo__mark">▲</span> PRO<strong>SPORT</strong></span>
+        <p class="footer__desc">Projeto de portfólio — e-commerce esportivo feito com HTML, CSS e JavaScript.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Institucional</h4>
+        <a href="#">Sobre nós</a><a href="#">Trabalhe conosco</a><a href="#">Lojas físicas</a>
+      </div>
+      <div class="footer__col">
+        <h4>Ajuda</h4>
+        <a href="#">Trocas e devoluções</a><a href="#">Formas de pagamento</a><a href="#">Rastrear pedido</a>
+      </div>
+      <div class="footer__col">
+        <h4>Pagamento</h4>
+        <p class="footer__pay">💳 🏦 📱 Pix</p>
+      </div>
+    </div>
+    <div class="footer__bottom">© 2026 ProSport — Desenvolvido para portfólio.</div>
+  </footer>
+
+  <!-- Carrinho lateral -->
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <aside class="cart-drawer" id="cart-drawer" aria-label="Carrinho de compras">
+    <div class="cart-drawer__head">
+      <h3>Seu carrinho</h3>
+      <button class="cart-drawer__close" id="cart-close" aria-label="Fechar carrinho">✕</button>
+    </div>
+    <div class="cart-drawer__body" id="cart-items"></div>
+    <div class="cart-drawer__foot">
+      <div class="cart-total"><span>Total</span><strong id="cart-total">R$ 0,00</strong></div>
+      <button class="btn btn--primary btn--block" id="checkout-btn">Finalizar compra</button>
+    </div>
+  </aside>
+
+  <!-- Toast de feedback -->
+  <div class="toast" id="toast"></div>
+
+  <script src="js/products.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
