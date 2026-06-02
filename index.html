@@ -1,149 +1,333 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ProSport — Loja de Artigos Esportivos</title>
-  <meta name="description" content="ProSport: tênis, roupas e acessórios esportivos das melhores marcas. Frete rápido e parcelamento." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ProSport — Loja de Artigos Esportivos</title>
+<meta name="description" content="ProSport: tênis, roupas e acessórios esportivos das melhores marcas." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --navy:#0a2540;
+  --navy-2:#0f2f55;
+  --navy-3:#13315c;
+  --accent:#1e6fff;
+  --accent-dark:#0b54d6;
+  --ink:#0a2540;
+  --gray-600:#5b6577;
+  --gray-400:#97a1b2;
+  --gray-200:#e4e8ef;
+  --gray-100:#f3f5f9;
+  --bg:#ffffff;
+  --green:#0a8f3c;
+  --radius:14px;
+  --shadow-sm:0 1px 3px rgba(10,37,64,.08);
+  --shadow-md:0 10px 30px rgba(10,37,64,.12);
+  --font-body:'Archivo',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-display:'Barlow Condensed',Impact,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:var(--font-body);color:var(--ink);background:var(--bg);line-height:1.5;-webkit-font-smoothing:antialiased;}
+.container{width:min(1200px,92%);margin-inline:auto;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;}
+a{text-decoration:none;color:inherit;}
+img{max-width:100%;display:block;}
+
+/* Topbar */
+.topbar{background:var(--navy);color:#fff;font-size:.8rem;font-weight:500;}
+.topbar__inner{display:flex;gap:1.5rem;justify-content:center;padding:.55rem 0;flex-wrap:wrap;}
+@media(max-width:640px){.topbar__hide{display:none;}}
+
+/* Header */
+.header{position:sticky;top:0;z-index:50;background:#fff;box-shadow:var(--shadow-sm);}
+.header__inner{display:flex;align-items:center;gap:1.5rem;padding:1rem 0;}
+.logo{display:flex;align-items:center;gap:.4rem;font-family:var(--font-display);font-size:1.7rem;letter-spacing:.5px;line-height:1;}
+.logo__mark{color:var(--accent);font-size:1.4rem;}
+.logo__text{color:var(--navy);font-weight:700;}
+.logo__text strong{color:var(--accent);}
+.search{flex:1;display:flex;align-items:center;background:var(--gray-100);border:2px solid transparent;border-radius:999px;padding:.15rem .15rem .15rem 1.25rem;transition:border-color .2s,background .2s;}
+.search:focus-within{border-color:var(--accent);background:#fff;}
+.search__input{flex:1;border:none;background:none;outline:none;font-size:.95rem;padding:.65rem 0;color:var(--ink);}
+.search__btn{display:grid;place-items:center;width:44px;height:44px;background:var(--accent);color:#fff;border-radius:999px;transition:background .2s;}
+.search__btn:hover{background:var(--accent-dark);}
+.header__actions{display:flex;gap:.25rem;}
+.icon-btn{position:relative;display:grid;place-items:center;width:46px;height:46px;border-radius:50%;color:var(--navy);transition:background .2s,color .2s;}
+.icon-btn:hover{background:var(--gray-100);color:var(--accent);}
+.cart-count{position:absolute;top:4px;right:4px;background:var(--accent);color:#fff;font-size:.7rem;font-weight:700;min-width:18px;height:18px;border-radius:999px;display:grid;place-items:center;padding:0 4px;}
+
+/* Nav */
+.nav{border-top:1px solid var(--gray-200);overflow-x:auto;}
+.nav__inner{display:flex;gap:.25rem;padding:.4rem 0;}
+.nav__link{font-size:.9rem;font-weight:600;color:var(--navy);padding:.55rem .9rem;border-radius:8px;white-space:nowrap;transition:all .15s;}
+.nav__link:hover{background:var(--gray-100);color:var(--accent);}
+.nav__link.is-active{color:#fff;background:var(--accent);}
+.nav__link--outlet{color:var(--accent);font-weight:700;}
+
+/* Hero */
+.hero{background:linear-gradient(120deg,var(--navy) 0%,var(--navy-3) 60%,var(--accent-dark) 150%);color:#fff;overflow:hidden;position:relative;}
+.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(30,111,255,.35),transparent 45%);pointer-events:none;}
+.hero__inner{display:flex;align-items:center;justify-content:space-between;padding:3.5rem 0;gap:2rem;position:relative;z-index:1;}
+.hero__tag{display:inline-block;background:var(--accent);color:#fff;font-weight:700;font-size:.72rem;letter-spacing:1.5px;text-transform:uppercase;padding:.4rem .85rem;border-radius:999px;margin-bottom:1rem;}
+.hero__title{font-family:var(--font-display);font-size:clamp(2.6rem,6vw,4.8rem);line-height:.92;font-weight:800;letter-spacing:1px;}
+.hero__sub{color:rgba(255,255,255,.8);margin:1rem 0 1.75rem;max-width:380px;}
+.hero__art{position:relative;display:grid;place-items:center;min-width:230px;}
+.hero__circle{width:230px;height:230px;border-radius:50%;background:radial-gradient(circle at 30% 30%,var(--accent),var(--accent-dark));box-shadow:0 20px 60px rgba(30,111,255,.5);animation:float 4s ease-in-out infinite;}
+.hero__emoji{position:absolute;font-size:6.5rem;animation:float 4s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-8deg);}50%{transform:translateY(-16px) rotate(8deg);}}
+
+/* Botões */
+.btn{display:inline-block;font-weight:700;font-size:.95rem;padding:.9rem 1.7rem;border-radius:999px;transition:transform .15s,background .2s;}
+.btn--primary{background:var(--accent);color:#fff;}
+.btn--primary:hover{background:#fff;color:var(--navy);transform:translateY(-2px);}
+.btn--block{width:100%;text-align:center;}
+
+/* Categorias círculos */
+.cats{display:flex;gap:1.25rem;justify-content:center;flex-wrap:wrap;padding:2.5rem 0 1rem;}
+.cat{display:flex;flex-direction:column;align-items:center;gap:.55rem;font-size:.8rem;font-weight:600;color:var(--navy);}
+.cat__icon{width:86px;height:86px;border-radius:50%;background:var(--gray-100);display:grid;place-items:center;font-size:2.3rem;border:2px solid transparent;transition:all .2s;}
+.cat:hover .cat__icon{border-color:var(--accent);transform:translateY(-4px);box-shadow:var(--shadow-md);}
+
+/* Seção produtos */
+.section-head{display:flex;align-items:center;justify-content:space-between;margin:2rem 0 1.25rem;gap:1rem;}
+.section-title{font-family:var(--font-display);font-size:2rem;font-weight:800;letter-spacing:.5px;color:var(--navy);}
+.sort{border:1px solid var(--gray-200);border-radius:8px;padding:.55rem .8rem;font-family:inherit;font-size:.85rem;color:var(--navy);background:#fff;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding-bottom:3rem;}
+
+/* Card */
+.card{border:1px solid var(--gray-200);border-radius:var(--radius);overflow:hidden;background:#fff;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s,border-color .2s;animation:pop .4s ease both;}
+.card:hover{transform:translateY(-5px);box-shadow:var(--shadow-md);border-color:var(--accent);}
+.card__media{position:relative;aspect-ratio:1;display:grid;place-items:center;font-size:4.5rem;background:linear-gradient(160deg,var(--gray-100),#fff);}
+.card__badge{position:absolute;top:.6rem;left:.6rem;background:var(--accent);color:#fff;font-size:.7rem;font-weight:700;padding:.22rem .55rem;border-radius:6px;}
+.card__badge--outlet{background:var(--navy);}
+.card__body{padding:.9rem 1rem 1.1rem;display:flex;flex-direction:column;flex:1;}
+.card__cat{font-size:.7rem;text-transform:uppercase;letter-spacing:.5px;color:var(--gray-400);font-weight:700;}
+.card__name{font-size:.95rem;font-weight:600;margin:.25rem 0 .6rem;min-height:2.6em;color:var(--navy);}
+.card__price-old{font-size:.8rem;color:var(--gray-400);text-decoration:line-through;}
+.card__price{font-size:1.4rem;font-weight:800;color:var(--navy);}
+.card__installments{font-size:.75rem;color:var(--green);font-weight:600;margin-bottom:.85rem;}
+.card__btn{margin-top:auto;background:var(--navy);color:#fff;font-weight:700;font-size:.85rem;padding:.75rem;border-radius:9px;transition:background .2s;}
+.card__btn:hover{background:var(--accent);}
+@keyframes pop{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+.empty{text-align:center;padding:3rem 0;color:var(--gray-600);font-size:1.1rem;}
+
+/* Footer */
+.footer{background:var(--navy);color:#fff;margin-top:2rem;}
+.footer__inner{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem;padding:3rem 0;}
+.logo--footer{font-size:1.5rem;color:#fff;}
+.logo--footer .logo__text{color:#fff;}
+.footer__desc{color:rgba(255,255,255,.6);font-size:.85rem;margin-top:.75rem;max-width:260px;}
+.footer__col h4{font-size:.9rem;margin-bottom:.8rem;}
+.footer__col a{display:block;color:rgba(255,255,255,.6);font-size:.85rem;padding:.2rem 0;transition:color .2s;}
+.footer__col a:hover{color:#fff;}
+.footer__pay{font-size:1.3rem;}
+.footer__bottom{border-top:1px solid rgba(255,255,255,.12);text-align:center;padding:1.25rem 0;font-size:.8rem;color:rgba(255,255,255,.6);}
+@media(max-width:760px){.footer__inner{grid-template-columns:1fr 1fr;}}
+
+/* Carrinho */
+.cart-overlay{position:fixed;inset:0;background:rgba(10,37,64,.55);opacity:0;visibility:hidden;transition:.25s;z-index:90;}
+.cart-overlay.is-open{opacity:1;visibility:visible;}
+.cart-drawer{position:fixed;top:0;right:0;height:100%;width:min(400px,100%);background:#fff;transform:translateX(100%);transition:transform .3s ease;z-index:100;display:flex;flex-direction:column;box-shadow:-10px 0 40px rgba(10,37,64,.25);}
+.cart-drawer.is-open{transform:translateX(0);}
+.cart-drawer__head{display:flex;align-items:center;justify-content:space-between;padding:1.25rem;border-bottom:1px solid var(--gray-200);}
+.cart-drawer__head h3{font-family:var(--font-display);font-size:1.5rem;color:var(--navy);}
+.cart-drawer__close{font-size:1.2rem;width:36px;height:36px;border-radius:50%;color:var(--gray-600);}
+.cart-drawer__close:hover{background:var(--gray-100);color:var(--accent);}
+.cart-drawer__body{flex:1;overflow-y:auto;padding:1rem 1.25rem;}
+.cart-empty{text-align:center;color:var(--gray-400);padding:3rem 0;}
+.cart-item{display:flex;gap:.85rem;padding:.85rem 0;border-bottom:1px solid var(--gray-200);}
+.cart-item__media{width:56px;height:56px;border-radius:8px;background:var(--gray-100);display:grid;place-items:center;font-size:1.8rem;flex-shrink:0;}
+.cart-item__info{flex:1;min-width:0;}
+.cart-item__name{font-size:.85rem;font-weight:600;color:var(--navy);}
+.cart-item__price{font-size:.85rem;color:var(--gray-600);}
+.cart-item__qty{display:inline-flex;align-items:center;gap:.5rem;margin-top:.35rem;}
+.qty-btn{width:24px;height:24px;border-radius:6px;background:var(--gray-100);font-weight:700;color:var(--navy);}
+.qty-btn:hover{background:var(--accent);color:#fff;}
+.cart-item__remove{color:var(--gray-400);font-size:.75rem;align-self:flex-start;}
+.cart-item__remove:hover{color:var(--accent);}
+.cart-drawer__foot{padding:1.25rem;border-top:1px solid var(--gray-200);}
+.cart-total{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1rem;}
+.cart-total strong{font-size:1.5rem;color:var(--navy);}
+
+/* Toast */
+.toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(120%);background:var(--navy);color:#fff;padding:.85rem 1.4rem;border-radius:999px;font-weight:600;font-size:.9rem;box-shadow:var(--shadow-md);z-index:200;transition:transform .35s ease;}
+.toast.is-show{transform:translateX(-50%) translateY(0);}
+
+/* Responsivo */
+@media(max-width:720px){
+  .header__inner{flex-wrap:wrap;}
+  .search{order:3;flex-basis:100%;}
+  .hero__art{display:none;}
+  .hero__inner{padding:2.5rem 0;}
+}
+</style>
 </head>
 <body>
-  <!-- Faixa superior -->
-  <div class="topbar">
-    <div class="container topbar__inner">
-      <span>🚚 Frete grátis acima de R$ 299</span>
-      <span>💳 Até 10x sem juros</span>
-      <span class="topbar__hide-mobile">📦 Troca fácil em 30 dias</span>
+<div class="topbar"><div class="container topbar__inner">
+  <span>🚚 Frete grátis acima de R$ 299</span>
+  <span>💳 Até 10x sem juros</span>
+  <span class="topbar__hide">📦 Troca fácil em 30 dias</span>
+</div></div>
+
+<header class="header">
+  <div class="container header__inner">
+    <a href="#" class="logo" aria-label="ProSport"><span class="logo__mark">▲</span><span class="logo__text">PRO<strong>SPORT</strong></span></a>
+    <div class="search">
+      <input type="text" id="search-input" class="search__input" placeholder="O que você procura?" aria-label="Buscar" />
+      <button class="search__btn" id="search-btn" aria-label="Buscar"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
+    </div>
+    <div class="header__actions">
+      <button class="icon-btn" aria-label="Favoritos"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+      <button class="icon-btn" id="cart-btn" aria-label="Carrinho"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><span class="cart-count" id="cart-count">0</span></button>
     </div>
   </div>
+  <nav class="nav"><div class="container nav__inner">
+    <button class="nav__link" data-filter="all">Todos</button>
+    <button class="nav__link" data-filter="Calçados">Calçados</button>
+    <button class="nav__link" data-filter="Roupas">Roupas</button>
+    <button class="nav__link" data-filter="Futebol">Futebol</button>
+    <button class="nav__link" data-filter="Basquete">Basquete</button>
+    <button class="nav__link" data-filter="Corrida">Corrida</button>
+    <button class="nav__link" data-filter="Acessórios">Acessórios</button>
+    <button class="nav__link nav__link--outlet" data-filter="Outlet">Outlet</button>
+  </div></nav>
+</header>
 
-  <!-- Cabeçalho -->
-  <header class="header">
-    <div class="container header__inner">
-      <a href="#" class="logo" aria-label="ProSport - página inicial">
-        <span class="logo__mark">▲</span>
-        <span class="logo__text">PRO<strong>SPORT</strong></span>
-      </a>
+<section class="hero"><div class="container hero__inner">
+  <div class="hero__content">
+    <p class="hero__tag">Nova Coleção 2026</p>
+    <h1 class="hero__title">PERFORMANCE<br>SEM LIMITES</h1>
+    <p class="hero__sub">Tênis, roupas e equipamentos das maiores marcas do esporte.</p>
+    <a href="#produtos" class="btn btn--primary">Ver ofertas</a>
+  </div>
+  <div class="hero__art" aria-hidden="true"><div class="hero__circle"></div><div class="hero__emoji">👟</div></div>
+</div></section>
 
-      <div class="search">
-        <input type="text" id="search-input" class="search__input" placeholder="O que você procura?" aria-label="Buscar produtos" />
-        <button class="search__btn" id="search-btn" aria-label="Buscar">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        </button>
-      </div>
+<section class="cats container">
+  <button class="cat" data-filter="Futebol"><span class="cat__icon">⚽</span><span>Futebol</span></button>
+  <button class="cat" data-filter="Basquete"><span class="cat__icon">🏀</span><span>Basquete</span></button>
+  <button class="cat" data-filter="Corrida"><span class="cat__icon">🏃</span><span>Corrida</span></button>
+  <button class="cat" data-filter="Calçados"><span class="cat__icon">👟</span><span>Calçados</span></button>
+  <button class="cat" data-filter="Roupas"><span class="cat__icon">👕</span><span>Roupas</span></button>
+  <button class="cat" data-filter="Acessórios"><span class="cat__icon">🎒</span><span>Acessórios</span></button>
+</section>
 
-      <div class="header__actions">
-        <button class="icon-btn" aria-label="Favoritos">
-          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>
-        </button>
-        <button class="icon-btn cart-btn" id="cart-btn" aria-label="Abrir carrinho">
-          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-          <span class="cart-count" id="cart-count">0</span>
-        </button>
-      </div>
+<main class="container" id="produtos">
+  <div class="section-head">
+    <h2 class="section-title" id="grid-title">Destaques</h2>
+    <select id="sort-select" class="sort" aria-label="Ordenar">
+      <option value="relevance">Mais relevantes</option>
+      <option value="price-asc">Menor preço</option>
+      <option value="price-desc">Maior preço</option>
+      <option value="name">Nome (A-Z)</option>
+    </select>
+  </div>
+  <div class="grid" id="product-grid"></div>
+  <p class="empty" id="empty-msg" hidden>Nenhum produto encontrado. Tente outra busca. 🔍</p>
+</main>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div>
+      <span class="logo logo--footer"><span class="logo__mark">▲</span><span class="logo__text">PRO<strong>SPORT</strong></span></span>
+      <p class="footer__desc">Projeto de portfólio — e-commerce esportivo feito com HTML, CSS e JavaScript.</p>
     </div>
+    <div class="footer__col"><h4>Institucional</h4><a href="#">Sobre nós</a><a href="#">Trabalhe conosco</a><a href="#">Lojas físicas</a></div>
+    <div class="footer__col"><h4>Ajuda</h4><a href="#">Trocas e devoluções</a><a href="#">Formas de pagamento</a><a href="#">Rastrear pedido</a></div>
+    <div class="footer__col"><h4>Pagamento</h4><p class="footer__pay">💳 🏦 📱 Pix</p></div>
+  </div>
+  <div class="footer__bottom">© 2026 ProSport — Desenvolvido para portfólio.</div>
+</footer>
 
-    <!-- Menu de categorias -->
-    <nav class="nav">
-      <div class="container nav__inner">
-        <button class="nav__link nav__link--highlight" data-filter="all">Todos</button>
-        <button class="nav__link" data-filter="Calçados">Calçados</button>
-        <button class="nav__link" data-filter="Roupas">Roupas</button>
-        <button class="nav__link" data-filter="Futebol">Futebol</button>
-        <button class="nav__link" data-filter="Basquete">Basquete</button>
-        <button class="nav__link" data-filter="Corrida">Corrida</button>
-        <button class="nav__link" data-filter="Acessórios">Acessórios</button>
-        <button class="nav__link nav__link--outlet" data-filter="Outlet">Outlet</button>
-      </div>
-    </nav>
-  </header>
+<div class="cart-overlay" id="cart-overlay"></div>
+<aside class="cart-drawer" id="cart-drawer" aria-label="Carrinho">
+  <div class="cart-drawer__head"><h3>Seu carrinho</h3><button class="cart-drawer__close" id="cart-close" aria-label="Fechar">✕</button></div>
+  <div class="cart-drawer__body" id="cart-items"></div>
+  <div class="cart-drawer__foot">
+    <div class="cart-total"><span>Total</span><strong id="cart-total">R$ 0,00</strong></div>
+    <button class="btn btn--primary btn--block" id="checkout-btn">Finalizar compra</button>
+  </div>
+</aside>
 
-  <!-- Banner / Hero -->
-  <section class="hero">
-    <div class="container hero__inner">
-      <div class="hero__content">
-        <p class="hero__tag">Nova Coleção 2026</p>
-        <h1 class="hero__title">PERFORMANCE<br>SEM LIMITES</h1>
-        <p class="hero__sub">Tênis, roupas e equipamentos das maiores marcas do esporte.</p>
-        <a href="#produtos" class="btn btn--primary">Ver ofertas</a>
-      </div>
-      <div class="hero__art" aria-hidden="true">
-        <div class="hero__circle"></div>
-        <div class="hero__emoji">👟</div>
-      </div>
-    </div>
-  </section>
+<div class="toast" id="toast"></div>
 
-  <!-- Categorias em círculos -->
-  <section class="cats container">
-    <button class="cat" data-filter="Futebol"><span class="cat__icon">⚽</span><span>Futebol</span></button>
-    <button class="cat" data-filter="Basquete"><span class="cat__icon">🏀</span><span>Basquete</span></button>
-    <button class="cat" data-filter="Corrida"><span class="cat__icon">🏃</span><span>Corrida</span></button>
-    <button class="cat" data-filter="Calçados"><span class="cat__icon">👟</span><span>Calçados</span></button>
-    <button class="cat" data-filter="Roupas"><span class="cat__icon">👕</span><span>Roupas</span></button>
-    <button class="cat" data-filter="Acessórios"><span class="cat__icon">🎒</span><span>Acessórios</span></button>
-  </section>
+<script>
+const PRODUCTS=[
+ {id:1,name:"Tênis de Corrida AirRun Pro",category:"Corrida",price:399.90,oldPrice:549.90,emoji:"👟",badge:"-27%"},
+ {id:2,name:"Camisa Seleção Brasil Torcedor",category:"Futebol",price:279.90,oldPrice:null,emoji:"👕",badge:null},
+ {id:3,name:"Bola de Futebol Campo Oficial",category:"Futebol",price:149.90,oldPrice:199.90,emoji:"⚽",badge:"-25%"},
+ {id:4,name:"Tênis Basquete SkyJump High",category:"Basquete",price:599.90,oldPrice:null,emoji:"👟",badge:"Novo"},
+ {id:5,name:"Bola de Basquete Indoor/Outdoor",category:"Basquete",price:189.90,oldPrice:229.90,emoji:"🏀",badge:"-17%"},
+ {id:6,name:"Camiseta Dry-Fit Treino Masc.",category:"Roupas",price:89.90,oldPrice:119.90,emoji:"👕",badge:"-25%"},
+ {id:7,name:"Shorts Esportivo Performance",category:"Roupas",price:79.90,oldPrice:null,emoji:"🩳",badge:null},
+ {id:8,name:"Mochila Esportiva 30L",category:"Acessórios",price:159.90,oldPrice:199.90,emoji:"🎒",badge:"-20%"},
+ {id:9,name:"Garrafa Térmica 1L Squeeze",category:"Acessórios",price:49.90,oldPrice:null,emoji:"🥤",badge:null},
+ {id:10,name:"Tênis Casual UrbanStep",category:"Calçados",price:329.90,oldPrice:459.90,emoji:"👟",badge:"Outlet",outlet:true},
+ {id:11,name:"Meião Profissional (par)",category:"Futebol",price:39.90,oldPrice:59.90,emoji:"🧦",badge:"Outlet",outlet:true},
+ {id:12,name:"Jaqueta Corta-Vento Run",category:"Corrida",price:249.90,oldPrice:null,emoji:"🧥",badge:"Novo"},
+ {id:13,name:"Luvas de Goleiro Grip Max",category:"Futebol",price:129.90,oldPrice:169.90,emoji:"🧤",badge:"-24%"},
+ {id:14,name:"Tênis Trail Mountain Grip",category:"Calçados",price:449.90,oldPrice:599.90,emoji:"👟",badge:"-25%"},
+ {id:15,name:"Boné Esportivo Ajustável",category:"Acessórios",price:69.90,oldPrice:null,emoji:"🧢",badge:null},
+ {id:16,name:"Regata Treino Feminina",category:"Roupas",price:59.90,oldPrice:89.90,emoji:"🎽",badge:"Outlet",outlet:true},
+];
 
-  <!-- Produtos -->
-  <main class="container" id="produtos">
-    <div class="section-head">
-      <h2 class="section-title" id="grid-title">Destaques</h2>
-      <select id="sort-select" class="sort" aria-label="Ordenar produtos">
-        <option value="relevance">Mais relevantes</option>
-        <option value="price-asc">Menor preço</option>
-        <option value="price-desc">Maior preço</option>
-        <option value="name">Nome (A-Z)</option>
-      </select>
-    </div>
+const state={filter:"all",search:"",sort:"relevance",cart:[]};
+const $=(s)=>document.querySelector(s);
+const formatBRL=(v)=>v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
 
-    <div class="grid" id="product-grid"><!-- produtos injetados via JS --></div>
-    <p class="empty" id="empty-msg" hidden>Nenhum produto encontrado. Tente outra busca. 🔍</p>
-  </main>
-
-  <!-- Rodapé -->
-  <footer class="footer">
-    <div class="container footer__inner">
-      <div>
-        <span class="logo logo--footer"><span class="logo__mark">▲</span> PRO<strong>SPORT</strong></span>
-        <p class="footer__desc">Projeto de portfólio — e-commerce esportivo feito com HTML, CSS e JavaScript.</p>
-      </div>
-      <div class="footer__col">
-        <h4>Institucional</h4>
-        <a href="#">Sobre nós</a><a href="#">Trabalhe conosco</a><a href="#">Lojas físicas</a>
-      </div>
-      <div class="footer__col">
-        <h4>Ajuda</h4>
-        <a href="#">Trocas e devoluções</a><a href="#">Formas de pagamento</a><a href="#">Rastrear pedido</a>
-      </div>
-      <div class="footer__col">
-        <h4>Pagamento</h4>
-        <p class="footer__pay">💳 🏦 📱 Pix</p>
-      </div>
-    </div>
-    <div class="footer__bottom">© 2026 ProSport — Desenvolvido para portfólio.</div>
-  </footer>
-
-  <!-- Carrinho lateral -->
-  <div class="cart-overlay" id="cart-overlay"></div>
-  <aside class="cart-drawer" id="cart-drawer" aria-label="Carrinho de compras">
-    <div class="cart-drawer__head">
-      <h3>Seu carrinho</h3>
-      <button class="cart-drawer__close" id="cart-close" aria-label="Fechar carrinho">✕</button>
-    </div>
-    <div class="cart-drawer__body" id="cart-items"></div>
-    <div class="cart-drawer__foot">
-      <div class="cart-total"><span>Total</span><strong id="cart-total">R$ 0,00</strong></div>
-      <button class="btn btn--primary btn--block" id="checkout-btn">Finalizar compra</button>
-    </div>
-  </aside>
-
-  <!-- Toast de feedback -->
-  <div class="toast" id="toast"></div>
-
-  <script src="js/products.js"></script>
-  <script src="js/app.js"></script>
+function getVisibleProducts(){
+  let list=[...PRODUCTS];
+  if(state.filter==="Outlet")list=list.filter(p=>p.outlet);
+  else if(state.filter!=="all")list=list.filter(p=>p.category===state.filter);
+  if(state.search.trim()){const t=state.search.toLowerCase();list=list.filter(p=>p.name.toLowerCase().includes(t)||p.category.toLowerCase().includes(t));}
+  if(state.sort==="price-asc")list.sort((a,b)=>a.price-b.price);
+  else if(state.sort==="price-desc")list.sort((a,b)=>b.price-a.price);
+  else if(state.sort==="name")list.sort((a,b)=>a.name.localeCompare(b.name));
+  return list;
+}
+function renderProducts(){
+  const grid=$("#product-grid"),empty=$("#empty-msg"),products=getVisibleProducts();
+  const titles={all:"Destaques",Outlet:"Outlet — Ofertas"};
+  $("#grid-title").textContent=titles[state.filter]||state.filter;
+  if(products.length===0){grid.innerHTML="";empty.hidden=false;return;}
+  empty.hidden=true;
+  grid.innerHTML=products.map(p=>{
+    const inst=(p.price/10).toLocaleString("pt-BR",{minimumFractionDigits:2});
+    const badge=p.badge?`<span class="card__badge ${p.outlet?"card__badge--outlet":""}">${p.badge}</span>`:"";
+    const oldP=p.oldPrice?`<span class="card__price-old">${formatBRL(p.oldPrice)}</span>`:"";
+    return `<article class="card"><div class="card__media">${badge}${p.emoji}</div><div class="card__body"><span class="card__cat">${p.category}</span><h3 class="card__name">${p.name}</h3>${oldP}<span class="card__price">${formatBRL(p.price)}</span><span class="card__installments">10x de R$ ${inst} sem juros</span><button class="card__btn" data-add="${p.id}">Adicionar ao carrinho</button></div></article>`;
+  }).join("");
+}
+function addToCart(id){const i=state.cart.find(x=>x.id===id);if(i)i.qty+=1;else state.cart.push({id,qty:1});updateCart();const p=PRODUCTS.find(x=>x.id===id);showToast(`${p.name} adicionado! 🛒`);}
+function changeQty(id,d){const i=state.cart.find(x=>x.id===id);if(!i)return;i.qty+=d;if(i.qty<=0)state.cart=state.cart.filter(x=>x.id!==id);updateCart();}
+function removeFromCart(id){state.cart=state.cart.filter(x=>x.id!==id);updateCart();}
+function cartTotal(){return state.cart.reduce((s,i)=>{const p=PRODUCTS.find(x=>x.id===i.id);return s+p.price*i.qty;},0);}
+function updateCart(){
+  $("#cart-count").textContent=state.cart.reduce((s,i)=>s+i.qty,0);
+  $("#cart-total").textContent=formatBRL(cartTotal());
+  const body=$("#cart-items");
+  if(state.cart.length===0){body.innerHTML=`<p class="cart-empty">Seu carrinho está vazio. 🛒<br>Que tal escolher um produto?</p>`;return;}
+  body.innerHTML=state.cart.map(i=>{const p=PRODUCTS.find(x=>x.id===i.id);return `<div class="cart-item"><div class="cart-item__media">${p.emoji}</div><div class="cart-item__info"><div class="cart-item__name">${p.name}</div><div class="cart-item__price">${formatBRL(p.price)}</div><div class="cart-item__qty"><button class="qty-btn" data-dec="${p.id}">−</button><span>${i.qty}</span><button class="qty-btn" data-inc="${p.id}">+</button></div></div><button class="cart-item__remove" data-remove="${p.id}">Remover</button></div>`;}).join("");
+}
+function openCart(){$("#cart-drawer").classList.add("is-open");$("#cart-overlay").classList.add("is-open");}
+function closeCart(){$("#cart-drawer").classList.remove("is-open");$("#cart-overlay").classList.remove("is-open");}
+let toastTimer;
+function showToast(m){const t=$("#toast");t.textContent=m;t.classList.add("is-show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove("is-show"),2200);}
+function setActiveNav(){document.querySelectorAll(".nav__link").forEach(l=>l.classList.toggle("is-active",l.dataset.filter===state.filter));}
+function bindEvents(){
+  document.querySelectorAll("[data-filter]").forEach(el=>el.addEventListener("click",()=>{state.filter=el.dataset.filter;setActiveNav();renderProducts();$("#produtos").scrollIntoView({behavior:"smooth",block:"start"});}));
+  $("#search-input").addEventListener("input",e=>{state.search=e.target.value;renderProducts();});
+  $("#search-btn").addEventListener("click",()=>renderProducts());
+  $("#sort-select").addEventListener("change",e=>{state.sort=e.target.value;renderProducts();});
+  document.body.addEventListener("click",e=>{const t=e.target;if(t.dataset.add)addToCart(+t.dataset.add);if(t.dataset.inc)changeQty(+t.dataset.inc,1);if(t.dataset.dec)changeQty(+t.dataset.dec,-1);if(t.dataset.remove)removeFromCart(+t.dataset.remove);});
+  $("#cart-btn").addEventListener("click",openCart);
+  $("#cart-close").addEventListener("click",closeCart);
+  $("#cart-overlay").addEventListener("click",closeCart);
+  $("#checkout-btn").addEventListener("click",()=>{if(state.cart.length===0){showToast("Seu carrinho está vazio 🙈");return;}showToast(`Pedido de ${formatBRL(cartTotal())} finalizado! ✅`);state.cart=[];updateCart();closeCart();});
+}
+document.addEventListener("DOMContentLoaded",()=>{bindEvents();setActiveNav();renderProducts();updateCart();});
+</script>
 </body>
 </html>
